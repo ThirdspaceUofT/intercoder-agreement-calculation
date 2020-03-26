@@ -4,10 +4,6 @@ if __name__ == '__main__':
     
     df = pd.read_csv ('./data25032020.csv')
 
-    # Obtain the count for each category (e.g., Generic) in the two columns.
-    coder1 = dict(df['C2'].value_counts()) 
-    coder2 = dict(df['C2'].value_counts())
-
     total = len(df['C1']) # defining the total number of records in a column
 
     # Obtain a list of booleans, where 'True' indicates the agreement between 
@@ -18,6 +14,10 @@ if __name__ == '__main__':
  
     # Calculate agreement_by_chance.
     agreement_by_chance = 0
+    # Obtain the number of times each category (e.g., Generic) appears in the 
+    # two columns, respectively.
+    coder1 = dict(df['C1'].value_counts()) 
+    coder2 = dict(df['C2'].value_counts())
     for category in coder1:
         if category in coder2: 
             agreement_by_chance += (coder1[category] * coder2[category]) / float((total * total))
