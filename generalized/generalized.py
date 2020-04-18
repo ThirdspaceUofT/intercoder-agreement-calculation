@@ -3,7 +3,9 @@ import sys
 
 
 def get_weighted_kappa(data, weights_file):
-    """Return the weighted cohen's kappa given file filename."""
+    """
+    Return the weighted cohen's kappa given file filename and predefined weights.
+    """
     df = pd.read_csv(data)
     df1 = pd.read_csv(weights_file, sep=",\s", header=None, names=["c", "w"], 
         engine="python")
