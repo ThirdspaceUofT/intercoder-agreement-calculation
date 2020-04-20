@@ -4,7 +4,7 @@ import sys
 
 def get_weighted_kappa(data, weights_file):
     """
-    Return the weighted cohen's kappa given file filename and predefined weights.
+    Return the weighted cohen's kappa given file data and predefined weights.
     """
     df = pd.read_csv(data)
     df1 = pd.read_csv(weights_file, sep=",\s", header=None, names=["c", "w"], 
@@ -15,16 +15,9 @@ def get_weighted_kappa(data, weights_file):
     weights = dict(zip(df1.c, df1.w))
     
     # calculate weighted ovserved_agreement
-    df['Weight'] = df.apply(lambda x: abs(weights[x['C1']] - weights[x['C2']]),
-                             axis=1)
-    result = dict(df['Weight'].value_counts())
-    
-    observed_agreement = 0
-    for i in range(num_weights):
-        if i not in result:
-            continue
-        normalized = 1 - (i / float(num_weights - 1)) # define the normalized weight
-        observed_agreement += normalized * (result[i] / float(total))
+    df['Weight'] = df.apply(lambda x: 1 - abs(weights[x['C1']] - 
+                    weights[x['C2']]) / float(num_weights - 1), axis=1)
+    observed_agreement = df['Weight'].sum() / float(total)
 
     # calculate weighted agreement_by_chance
     agreement_by_chance = 0
@@ -70,8 +63,8 @@ if __name__ == '__main__':
     check_input(data, weights)
     
     results = get_weighted_kappa(data, weights)
-    print ("The weighted Kappa between" + 
-        " coders C1 and C2 is {}.".format(results[0]))
-    print ("The weighted observed-agreement is {}.".format(results[1]))
-    print ("The weighted agreement-by-changce is {}.".format(results[2]))
+    print "The weighted Kappa between" \
+        " coders C1 and C2 is {}.".format(results[0])
+    print "The weighted observed-agreement is {}.".format(results[1])
+    print "The weighted agreement-by-changce is {}.".format(results[2])
     
