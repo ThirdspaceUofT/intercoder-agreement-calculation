@@ -28,3 +28,12 @@ The weighted Kappa between coders C1 and C2 is 0.749071251175.
 The weighted observed-agreement is 0.924759405074.
 The weighted agreement-by-changce is 0.700151555859.
 ```
+
+### 4. calculate kappa with multiple labels
+```console
+$ cd multi-label
+$ python multilabel.py data.csv
+The weighted Kappa between coders C1 and C2 is 0.723481095176.
+The weighted observed-agreement is 0.945209973753.
+The weighted agreement-by-changce is 0.801857937049.
+```
