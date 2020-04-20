@@ -14,7 +14,7 @@ def get_weight(a, b):
     Given two vectors, calculate the corresponding weight.
     
     Assumtion: 
-    Strings a and b have the same length and are deliminated by commas.
+    Strings a and b have the same length and are delimited by commas.
     """
     diff = 0
     for i in range(len(a)):
