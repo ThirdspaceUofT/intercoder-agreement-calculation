@@ -1,7 +1,7 @@
 import pandas as pd
 import sys
 
-# Assumptions: 
+# Assumptions about the input data file: 
 # 1. The data file contains headers (e.g., C1, C2)
 # 2. There is an index column.
 # 3. There is a vector column (i.e., a column with values like 1,1,0,0) 
