@@ -18,6 +18,8 @@ $ python generalized.py data.csv weights.txt
 The weighted Kappa between coders C1 and C2 is 0.749071251175.
 The weighted observed-agreement is 0.924759405074.
 The weighted agreement-by-changce is 0.700151555859.
+```
+```console
 $ python generalized.py data1.csv weights1.txt
 The weighted Kappa between coders C1 and C2 is 0.29021832124.
 The weighted observed-agreement is 0.72.
