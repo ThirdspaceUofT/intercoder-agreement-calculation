@@ -7,7 +7,7 @@
 ### 1. calculate cohen's kappa
 
 ```console
-$ cd basic
+$ cd 1-basic
 $ python basic.py
 Cohen's Kappa: 0.689926604606
 ```
@@ -16,7 +16,7 @@ Cohen's Kappa: 0.689926604606
 <a name="2"></a>
 ### 2. calculate weighted kappa (generalized)
 ```console
-$ cd weighted
+$ cd 2-weighted
 $ python weighted.py data.csv weights.txt
 Weighted Kappa: 0.749071251175
 ```
@@ -29,7 +29,7 @@ Weighted Kappa: 0.29021832124
 <a name="3"></a>
 ### 3. calculate kappa with multiple labels
 ```console
-$ cd multi-label
+$ cd 3-multilabel
 $ python multilabel.py data.csv
 Weighted Kappa: 0.723481095176
 Weighted Observed Agreement: 0.945209973753
