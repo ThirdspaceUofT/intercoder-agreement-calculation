@@ -6,8 +6,9 @@ import sys
 # 2. There is an index column.
 # 3. There is a vector column (i.e., a column with values like 1,1,0,0) 
 # for each coder. 
-# 4. There are exactly 2 coders and the data recorded for the 2 coders have the 
-# same pattern. Each coder records either 1 or 0 for every label.
+# 4. There are at least 2 coders and the data recorded for every coder has the 
+# same pattern. 
+# 5. Each coder records either 1 or 0 for every label.
 
 def get_weight(a, b):
     """
@@ -39,6 +40,7 @@ def get_weighted_kappa(data):
     if total == 0:
         return 0  
     num_cols = len(df.columns)
+    
     df['Weight'] = df.apply(helper, axis=1)
     observed_agreement = df['Weight'].sum() / float(total)
     
@@ -75,8 +77,6 @@ if __name__ == '__main__':
     data = sys.argv[1]
     check_input(data)
     
-    results = get_weighted_kappa(data)
-    print "Weighted Kappa: {}".format(results[0])
-    print "Weighted Observed Agreement: {}".format(results[1])
-    print "Weighted Agreement by Changce: {}".format(results[2])
+    result = get_weighted_kappa(data)
+    print "Weighted Kappa: {}".format(result)
     
