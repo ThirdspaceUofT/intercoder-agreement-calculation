@@ -36,4 +36,6 @@ if __name__ == '__main__':
             agreement_by_chance += (coder1[category] * coder2[category]) / float((total * total))
 
     kappa = (observed_agreement - agreement_by_chance) / (1 - agreement_by_chance)
-    print "The Cohen\'s Kappa among the coders is {}.".format(kappa)
+    print "Cohen\'s Kappa: {}".format(kappa)
+    print "Observed Agreement: {}".format(observed_agreement)
+    print "Agreement by Chance: {}".format(agreement_by_chance)
