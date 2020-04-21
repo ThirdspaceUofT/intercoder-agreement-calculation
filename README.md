@@ -29,11 +29,11 @@ $ cd weighted
 $ python weighted.py data.csv weights.txt
 ```
 #### Result:
-      | Variable       | Value           |
-      |:-------------:|:-------------:| 
-      | Weighted Kappa |  0.749071251175 | 
-      | Weighted Observed Agreement| 0.924759405074|   
-      | Weighted Agreement by Chance | 0.700151555859 |
+| Variable       | Value           |
+|:-------------:|:-------------:| 
+| Weighted Kappa |  0.749071251175 | 
+| Weighted Observed Agreement| 0.924759405074|   
+| Weighted Agreement by Chance | 0.700151555859 |
 
 
 ```console
