@@ -15,8 +15,6 @@
 $ cd basic
 $ python basic.py
 Cohen's Kappa: 0.689926604606
-Observed Agreement: 0.733680227058
-Agreement by Chance: 0.141107309114
 ```
 
 
@@ -26,15 +24,11 @@ Agreement by Chance: 0.141107309114
 $ cd weighted
 $ python weighted.py data.csv weights.txt
 Weighted Kappa: 0.749071251175
-Weighted Observed Agreement: 0.924759405074
-Weighted Agreement by Chance: 0.700151555859
 ```
 
 ```console
 $ python weighted.py data1.csv weights1.txt
 Weighted Kappa: 0.29021832124
-Weighted Observed Agreement: 0.72 
-Weighted Agreement by Chance: 0.6055125
 ```
 
 <a name="3"></a>
