@@ -1,21 +1,34 @@
 import pandas as pd
+import sys
 
+def check_input(data):
+    """
+    Check if the input files exist in the current working directory.
+    """
+    try:
+        with open(data) as f:
+            pass
+    except IOError:
+        print 'Cannot find data file \'{}\'.'.format(data)
+        sys.exit(1)
+        
 if __name__ == '__main__':
     
-    df = pd.read_csv ('./data25032020.csv')
+    if len(sys.argv) != 2:
+        print 'usage: python basic.py <data-file>'
+        sys.exit(1)
+    data = sys.argv[1]
+    check_input(data)
+    
+    df = pd.read_csv(data)
+    total = len(df) # defining the total number of records in a column
 
-    total = len(df['C1']) # defining the total number of records in a column
-
-    # Obtain a list of booleans, where 'True' indicates the agreement between 
-    # two coders over one row
-    test_equal = df.apply(lambda x: True if x['C1'] == x['C2'] else False , axis=1)
-    agreement_count = dict(test_equal.value_counts())[True]
-    observed_agreement = agreement_count / float(total)
+    # calculate observed_agreement
+    df['Weight'] = df.apply(lambda x: 1 if x['C1'] == x['C2'] else 0 , axis=1)
+    observed_agreement = df['Weight'].sum() / float(total)
  
-    # Calculate agreement_by_chance.
+    # calculate agreement_by_chance.
     agreement_by_chance = 0
-    # Obtain the number of times each category (e.g., Generic) appears in the 
-    # two columns, respectively.
     coder1 = dict(df['C1'].value_counts()) 
     coder2 = dict(df['C2'].value_counts())
     for category in coder1:
@@ -23,4 +36,4 @@ if __name__ == '__main__':
             agreement_by_chance += (coder1[category] * coder2[category]) / float((total * total))
 
     kappa = (observed_agreement - agreement_by_chance) / (1 - agreement_by_chance)
-    print "The Cohen\'s Kappa coefficient between coders C1 and C2 is {}.".format(kappa)
+    print "The Cohen\'s Kappa among the coders is {}.".format(kappa)

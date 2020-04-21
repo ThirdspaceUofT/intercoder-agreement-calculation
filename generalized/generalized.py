@@ -63,8 +63,8 @@ if __name__ == '__main__':
     check_input(data, weights)
     
     results = get_weighted_kappa(data, weights)
-    print "The weighted Kappa between" \
-        " coders C1 and C2 is {}.".format(results[0])
+    print "The weighted Kappa among" \
+        " the coders is {}.".format(results[0])
     print "The weighted observed-agreement is {}.".format(results[1])
     print "The weighted agreement-by-changce is {}.".format(results[2])
     
