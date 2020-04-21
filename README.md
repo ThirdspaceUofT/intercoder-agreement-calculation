@@ -1,9 +1,4 @@
 # intercoder-agreement-calculation
-## Table of Contents
-### [Usage](#usage)
-   * [calculate cohen's kappa](#1)
-   * [calculate weighted kappa (generalized)](#2)
-   * [calculate kappa with multiple labels](#3)
 
 <a name="usage"></a>
 ## Usage
