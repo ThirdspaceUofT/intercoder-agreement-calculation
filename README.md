@@ -8,7 +8,7 @@
 
 ```console
 $ cd 1-basic
-$ python basic.py
+$ python basic.py data.csv
 Cohen's Kappa: 0.689926604606
 ```
 
@@ -32,6 +32,4 @@ Weighted Kappa: 0.29021832124
 $ cd 3-multilabel
 $ python multilabel.py data.csv
 Weighted Kappa: 0.723481095176
-Weighted Observed Agreement: 0.945209973753
-Weighted Agreement by Chance: 0.801857937049
 ```
