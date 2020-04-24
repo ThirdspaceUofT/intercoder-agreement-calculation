@@ -4,11 +4,10 @@ import sys
 # Assumptions about the input data file: 
 # 1. The data file contains headers (e.g., C1, C2)
 # 2. There is an index column.
-# 3. There is a vector column (i.e., a column with values like 1,1,0,0) 
-# for each coder. 
-# 4. There are at least 2 coders and the data recorded for every coder has the 
+# 3. There are at least 2 coders and the data recorded for every coder has the 
 # same pattern. 
-# 5. Each coder records either 1 or 0 for every label.
+# 4. Each coder records either 1 or 0 for every label and there is a vector 
+# column (with values like 1,0,0,1) for every coder.
 
 def get_weight(a, b):
     """
