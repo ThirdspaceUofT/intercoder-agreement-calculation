@@ -7,6 +7,11 @@ import sys
 # 2. There is an index column.
 # 3. There are at least 2 coders and each coder occupies one column.
 
+# Assumptions about the input weights file:
+# 1. There are exactly two columns with the first one being the categories and
+# the second one being the weights. 
+# 2. There are no headers in this file.
+
 def get_weighted_kappa(data, weights_file):
     """
     Return the weighted cohen's kappa given file data and predefined weights.
