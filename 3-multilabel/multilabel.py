@@ -23,13 +23,6 @@ def get_weight(a, b):
             diff += 1
     return 1 - diff / float((len(a) + 1) / 2)
 
-def helper(x):
-    """
-    Given a line x in the data frame, calculate the corresponding weight.
-    """
-    a = x[len(x) / 2]
-    b = x[len(x) - 1]
-    return get_weight(str(a), str(b))
 
 def get_weighted_kappa(data):
     """
@@ -39,23 +32,36 @@ def get_weighted_kappa(data):
     total = len(df)
     if total == 0:
         return 0  
-    num_cols = len(df.columns)
     
-    df['Weight'] = df.apply(helper, axis=1)
-    observed_agreement = df['Weight'].sum() / float(total)
+    size = 1 # define the number of columns occupied by each coder
+    while size < len(df.columns):
+        if len(str(df.iloc[:, size][0])) > 1:
+            break
+        size += 1
+    num_coders = (len(df.columns) - 1) / size
     
-    agreement_by_chance = 0
-    coder1 = dict(df.iloc[:,num_cols/2].value_counts()) 
-    coder2 = dict(df.iloc[:,num_cols-1].value_counts())
-    for i in coder1:
-        for j in coder2:
-            weight = get_weight(str(i), str(j))
-            agreement_by_chance += (weight * (coder1[i] * coder2[j]) 
-            / float(total * total))
+    sum_kappa = 0    
+    for i in range(1, num_coders):
+        for j in range(i + 1, num_coders + 1):
+            # calculate weighted ovserved_agreement
+            df['Weight'] = df.apply(lambda x: get_weight(str(x[i*size]), 
+                            str(x[j*size])), axis=1)
+            observed_agreement = df['Weight'].sum() / float(total)
+            
+            # calculate weighted agreement_by_chance
+            agreement_by_chance = 0
+            coder1 = dict(df.iloc[:, i*size].value_counts()) 
+            coder2 = dict(df.iloc[:, j*size].value_counts())
+            for k in coder1:
+                for t in coder2:
+                    weight = get_weight(str(k), str(t))
+                    agreement_by_chance += (weight * (coder1[k] * coder2[t]) 
+                        / float(total * total))
+            sum_kappa += (observed_agreement - agreement_by_chance) \
+                / (1 - agreement_by_chance)
                 
-    kappa = (observed_agreement - agreement_by_chance) \
-            / (1 - agreement_by_chance)
-    return [kappa, observed_agreement, agreement_by_chance]
+    kappa = sum_kappa / (num_coders * (num_coders - 1) / 2)
+    return kappa
 
 
 def check_input(data):
