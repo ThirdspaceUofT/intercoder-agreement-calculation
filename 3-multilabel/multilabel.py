@@ -37,7 +37,7 @@ def get_weighted_kappa(data):
         if len(str(df.iloc[:, size][0])) > 1:
             break
         size += 1
-    num_coders = (len(df.columns) - 1) / size
+    num_coders = int((len(df.columns) - 1) / size)
     
     sum_kappa = 0    
     for i in range(1, num_coders):
