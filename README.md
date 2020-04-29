@@ -8,8 +8,8 @@
 
 ```console
 $ cd 1-basic
-$ python basic.py data.csv
-Cohen's Kappa: 0.689926604606
+$ python3 basic.py data.csv
+Cohen's Kappa: 0.6899266046058918
 ```
 
 
@@ -17,19 +17,19 @@ Cohen's Kappa: 0.689926604606
 ### 2. calculate weighted kappa (generalized)
 ```console
 $ cd 2-weighted
-$ python weighted.py data.csv weights.txt
-Weighted Kappa: 0.749071251175
+$ python3 weighted.py data.csv weights.txt
+Weighted Kappa: 0.7490712511745773
 ```
 
 ```console
-$ python weighted.py data1.csv weights1.txt
-Weighted Kappa: 0.29021832124
+$ python3 weighted.py data1.csv weights1.txt
+Weighted Kappa: 0.2902183212395829
 ```
 
 <a name="3"></a>
 ### 3. calculate kappa with multiple labels
 ```console
 $ cd 3-multilabel
-$ python multilabel.py data.csv
-Weighted Kappa: 0.723481095176
+$ python3 multilabel.py data.csv
+Weighted Kappa: 0.7234810951760119
 ```
