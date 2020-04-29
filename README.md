@@ -17,8 +17,8 @@ Cohen's Kappa: 0.6899266046058918
 ### 2. calculate weighted kappa (generalized)
 ```console
 $ cd 2-weighted
-$ python weighted.py data.csv weights.txt
-Weighted Kappa: 0.749071251175
+$ python3 weighted.py data.csv weights.txt
+Weighted Kappa: 0.7490712511745773
 ```
 
 ```console
