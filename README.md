@@ -22,14 +22,14 @@ Weighted Kappa: 0.7490712511745773
 ```
 
 ```console
-$ python weighted.py data1.csv weights1.txt
-Weighted Kappa: 0.29021832124
+$ python3 weighted.py data1.csv weights1.txt
+Weighted Kappa: 0.2902183212395829
 ```
 
 <a name="3"></a>
 ### 3. calculate kappa with multiple labels
 ```console
 $ cd 3-multilabel
-$ python multilabel.py data.csv
-Weighted Kappa: 0.723481095176
+$ python3 multilabel.py data.csv
+Weighted Kappa: 0.7234810951760119
 ```
