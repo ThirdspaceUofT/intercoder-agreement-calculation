@@ -8,8 +8,8 @@
 
 ```console
 $ cd 1-basic
-$ python basic.py data.csv
-Cohen's Kappa: 0.689926604606
+$ python3 basic.py data.csv
+Cohen's Kappa: 0.6899266046058918
 ```
 
 
