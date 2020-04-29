@@ -71,17 +71,17 @@ def check_input(data):
         with open(data) as f:
             pass
     except IOError:
-        print 'Cannot find data file \'{}\'.'.format(data)
+        print("Cannot find data file \'{}\'.".format(data))
         sys.exit(1)
 
 if __name__ == '__main__':
     
     if len(sys.argv) != 2:
-        print 'usage: python multilabel.py <data-file>'
+        print("usage: python multilabel.py <data-file>")
         sys.exit(1)
     data = sys.argv[1]
     check_input(data)
     
     result = get_weighted_kappa(data)
-    print "Weighted Kappa: {}".format(result)
+    print("Weighted Kappa: {}".format(result))
     

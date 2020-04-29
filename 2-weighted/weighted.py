@@ -61,26 +61,26 @@ def check_input(data, weights):
         with open(data) as f:
             pass
     except IOError:
-        print 'Cannot find data file \'{}\'.'.format(data)
+        print("Cannot find data file \'{}\'.".format(data))
         sys.exit(1)
     try:
         with open(weights) as f:
             pass
     except IOError:
-        print 'Cannot find weights file \'{}\'.'.format(weights)
+        print("Cannot find weights file \'{}\'.".format(weights))
         sys.exit(1)
 
 
 if __name__ == '__main__':
     
     if len(sys.argv) != 3:
-        print 'usage: python weighted.py <data-file> <weights-file>'
+        print("usage: python weighted.py <data-file> <weights-file>")
         sys.exit(1)
     data = sys.argv[1]
     weights = sys.argv[2]
     check_input(data, weights)
     
     result = get_weighted_kappa(data, weights)
-    print "Weighted Kappa: {}".format(result)
+    print("Weighted Kappa: {}".format(result))
 
     
