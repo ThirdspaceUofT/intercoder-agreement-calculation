@@ -14,13 +14,13 @@ def check_input(data):
         with open(data) as f:
             pass
     except IOError:
-        print("Cannot find data file \'{}\'.".format(data))
+        print("Cannot find data file \'", data, "\'")
         sys.exit(1)
         
 if __name__ == '__main__':
     
     if len(sys.argv) != 2:
-        print('usage: python basic.py <data-file>')
+        print("usage: python basic.py <data-file>")
         sys.exit(1)
     data = sys.argv[1]
     check_input(data)
@@ -52,4 +52,4 @@ if __name__ == '__main__':
                 / (1 - agreement_by_chance)
     
     kappa = sum_kappa / (num_coders * (num_coders - 1) / 2)
-    print("Cohen\'s Kappa: {}".format(kappa))
+    print("Cohen\'s Kappa: ", kappa)

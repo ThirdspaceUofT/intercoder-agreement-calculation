@@ -71,7 +71,7 @@ def check_input(data):
         with open(data) as f:
             pass
     except IOError:
-        print("Cannot find data file \'{}\'.".format(data))
+        print("Cannot find data file \'", data, "\'")
         sys.exit(1)
 
 if __name__ == '__main__':
@@ -83,5 +83,5 @@ if __name__ == '__main__':
     check_input(data)
     
     result = get_weighted_kappa(data)
-    print("Weighted Kappa: {}".format(result))
+    print("Weighted Kappa: ", result)
     
