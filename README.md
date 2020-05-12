@@ -43,12 +43,20 @@ Krippendorff's alpha for ordinal metric: 0.3136278980049674
 
 ### 5. calculate percentage agreement
 ```console
-$ python3 percentage_agreement.py ./data/data1.csv ./data/weights1.txt
-Percentage Agreement: 0.9247594050743658
+$ python3 percentage_agreement.py unweighted ./data/data1.csv ./data/weights1.txt
+Percentage Agreement: 0.8070866141732284
 ```
 ```console
-$ python3 percentage_agreement.py ./data/data2.csv ./data/weights2.txt
-Percentage Agreement: 0.72
+$ python3 percentage_agreement.py unweighted ./data/data2.csv ./data/weights2.txt 
+Percentage Agreement: 0.39
+```
+```console
+$ python3 percentage_agreement.py weighted ./data/data1.csv ./data/weights1.txt
+Weighted Percentage Agreement: 0.9247594050743658
+```
+```console
+$ python3 percentage_agreement.py weighted ./data/data2.csv ./data/weights2.txt
+Weighted Percentage Agreement: 0.72
 ```
 ### 6. calculate Scott's Pi
 ```console
@@ -61,9 +69,9 @@ Scott's Pi: 0.21741884529188435
 ```
 ```console
 $ python3 scott_pi.py weighted ./data/data1.csv ./data/weights1.txt
-Scott's Pi: 0.7495375634891724
+Weighted Scott's Pi: 0.7495375634891724
 ```
 ```console
 $ python3 scott_pi.py weighted ./data/data2.csv ./data/weights2.txt
-Scott's Pi: 0.2894020984844277
+Weighted Scott's Pi: 0.2894020984844277
 ```
