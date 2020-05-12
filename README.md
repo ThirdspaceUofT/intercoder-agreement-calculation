@@ -7,7 +7,7 @@
 ### 1. calculate cohen's kappa
 usage:
 ```console
-python3 cohen_kappa.py <data-file>
+python3 cohen_kappa.py [-h] <data-file>
 ```
 ```console
 $ python3 cohen_kappa.py ./data/data0.csv
@@ -59,7 +59,7 @@ Krippendorff's alpha for ordinal metric: 0.3136278980049674
 ### 5. calculate percentage agreement
 usage:
 ```console
-percentage_agreement.py [-h] {weighted,unweighted} data weights
+python3 percentage_agreement.py [-h] {weighted,unweighted} data weights
 ```                                                                                                  
 ```console
 $ python3 percentage_agreement.py unweighted ./data/data1.csv ./data/weights1.txt
@@ -80,7 +80,7 @@ Weighted Percentage Agreement: 0.72
 ### 6. calculate Scott's Pi
 usage:
 ```console
-scott_pi.py [-h] {weighted,unweighted} data weights
+python3 scott_pi.py [-h] {weighted,unweighted} data weights
 ```
 ```console
 $ python3 scott_pi.py unweighted ./data/data1.csv ./data/weights1.txt 
