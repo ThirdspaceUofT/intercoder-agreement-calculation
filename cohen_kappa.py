@@ -52,4 +52,4 @@ if __name__ == '__main__':
                 / (1 - agreement_by_chance)
     
     kappa = sum_kappa / (num_coders * (num_coders - 1) / 2)
-    print("Cohen\'s Kappa: ", kappa)
+    print("Cohen\'s Kappa:", kappa)

@@ -83,5 +83,5 @@ if __name__ == '__main__':
     check_input(data)
     
     result = get_weighted_kappa(data)
-    print("Weighted Kappa: ", result)
+    print("Weighted Kappa:", result)
     
