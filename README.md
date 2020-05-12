@@ -7,7 +7,7 @@
 ### 1. calculate cohen's kappa
 usage:
 ```console
-$ python3 cohen_kappa.py <data-file>
+python3 cohen_kappa.py <data-file>
 ```
 ```console
 $ python3 cohen_kappa.py ./data/data0.csv
