@@ -15,7 +15,9 @@ import argparse
 def main():
     
     parser = argparse.ArgumentParser(description='This program calculates '\
-        'percentage agreement of the given data.')
+        'Scott\'s Pi of the given data.')
+    parser.add_argument('weighted', choices=['weighted', 'unweighted'], 
+    nargs=1, help='indicate whether the result is weighted')
     parser.add_argument('data', nargs=1, help='set the data file')
     parser.add_argument('weights', nargs=1, help='set the weights file')
     args = parser.parse_args()
@@ -23,7 +25,7 @@ def main():
     weights_file = args.weights[0]
     check_input(data)
     check_input(weights_file)
-    
+
     df = pd.read_csv(data)
     df1 = pd.read_csv(weights_file, sep=",\s", header=None, names=["c", "w"], 
         engine="python")
@@ -32,15 +34,19 @@ def main():
     if total == 0:
         return 0  
     num_coders = len(df.columns) - 1
-    
+    categories = list(df1.c)
     num_weights = len(df1)
     weights = dict(zip(df1.c, df1.w))
     
-    pi = 0    
+    pi = 0
     for i in range(1, num_coders):
         for j in range(i + 1, num_coders + 1):
             # calculate weighted ovserved_agreement
-            weighted = df.apply(lambda x: 1 - abs(weights[x[i]] - 
+            if args.weighted[0] == 'unweighted':
+                weighted = df.apply(lambda x: 1 if x[i] == x[j] else 0, 
+                        axis=1)
+            else:
+                weighted = df.apply(lambda x: 1 - abs(weights[x[i]] - 
                             weights[x[j]]) / (num_weights - 1), axis=1)
             observed_agreement = weighted.sum() / total
             
@@ -48,19 +54,29 @@ def main():
             agreement_by_chance = 0
             coder1 = dict(df.iloc[:, i].value_counts()) 
             coder2 = dict(df.iloc[:, j].value_counts())
-            for k in coder1:
-                for t in coder2:
-                    weight = 1 - abs(weights[k] - weights[t]) / (num_weights - 1)
+            if args.weighted[0] == 'unweighted':    
+                for k in categories:
                     a, b = 0, 0
+                    if k in coder1:
+                        a = coder1[k]
                     if k in coder2:
-                        a = coder2[k]
-                    if t in coder1:
-                        b = coder1[t]
-                    agreement_by_chance += weight * (coder1[k] + a) * \
-                        (coder2[t] + b) / (4 * total * total)
+                        b = coder2[k]
+                    agreement_by_chance += (a + b) * (a + b) \
+                        / (4 * total * total)
+            else:
+                for k in coder1:
+                    for t in coder2:
+                        weight = 1 - abs(weights[k] - weights[t]) \
+                            / (num_weights - 1)
+                        a, b = 0, 0
+                        if k in coder2:
+                            a = coder2[k]
+                        if t in coder1:
+                            b = coder1[t]
+                        agreement_by_chance += weight * (coder1[k] + a) * \
+                        (coder2[t] + b) / (4 * total * total)    
             pi += (observed_agreement - agreement_by_chance) \
                 / (1 - agreement_by_chance)
-                
     pi = pi / (num_coders * (num_coders - 1) / 2)
     
     print("Scott's Pi:", pi)

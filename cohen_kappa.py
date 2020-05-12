@@ -37,7 +37,7 @@ if __name__ == '__main__':
         for j in range(i + 1, num_coders + 1):
             # calculate observed_agreement
             weighted = df.apply(lambda x: 1 if x[i] == x[j] else 0, 
-                            axis=1)
+                        axis=1)
             observed_agreement = weighted.sum() / total
             
             # calculate agreement_by_chance.
