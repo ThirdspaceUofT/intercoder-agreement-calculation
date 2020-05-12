@@ -1,7 +1,7 @@
 # intercoder-agreement-calculation
 
 <a name="usage"></a>
-## Usage
+## Example
 
 <a name="1"></a>
 ### 1. calculate cohen's kappa
@@ -52,10 +52,18 @@ Percentage Agreement: 0.72
 ```
 ### 6. calculate Scott's Pi
 ```console
-$ python3 scott_pi.py ./data/data1.csv ./data/weights1.txt
+$ python3 scott_pi.py unweighted ./data/data1.csv ./data/weights1.txt 
+Scott's Pi: 0.6720623237921253
+```
+```console
+$ python3 scott_pi.py unweighted ./data/data2.csv ./data/weights2.txt
+Scott's Pi: 0.21741884529188435
+```
+```console
+$ python3 scott_pi.py weighted ./data/data1.csv ./data/weights1.txt
 Scott's Pi: 0.7495375634891724
 ```
 ```console
-$ python3 scott_pi.py ./data/data2.csv ./data/weights2.txt
+$ python3 scott_pi.py weighted ./data/data2.csv ./data/weights2.txt
 Scott's Pi: 0.2894020984844277
 ```
