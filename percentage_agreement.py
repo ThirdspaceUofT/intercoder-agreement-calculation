@@ -17,6 +17,8 @@ def main():
     
     parser = argparse.ArgumentParser(description='This program calculates '\
         'percentage agreement of the given data.')
+    parser.add_argument('weighted', choices=['weighted', 'unweighted'], 
+    nargs=1, help='indicate whether the result is weighted')
     parser.add_argument('data', nargs=1, help='set the data file')
     parser.add_argument('weights', nargs=1, help='set the weights file')
     args = parser.parse_args()
@@ -39,12 +41,19 @@ def main():
     for i in range(1, num_coders):
         for j in range(i + 1, num_coders + 1):
             # calculate weighted ovserved_agreement
-            weighted = df.apply(lambda x: 1 - abs(weights[x[i]] - 
+            if args.weighted[0] == 'unweighted':
+                weighted = df.apply(lambda x: 1 if x[i] == x[j] else 0, 
+                        axis=1)
+            else:
+                weighted = df.apply(lambda x: 1 - abs(weights[x[i]] - 
                             weights[x[j]]) / (num_weights - 1), axis=1)
             agreement += weighted.sum() / total
             
     result = agreement / (num_coders * (num_coders - 1) / 2)
-    print("Percentage Agreement:", result)
+    if args.weighted[0] == 'unweighted':
+        print("Percentage Agreement:", result)
+    else:
+        print("Weighted Percentage Agreement:", result)
 
 def check_input(data):
     """

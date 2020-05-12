@@ -79,7 +79,10 @@ def main():
                 / (1 - agreement_by_chance)
     pi = pi / (num_coders * (num_coders - 1) / 2)
     
-    print("Scott's Pi:", pi)
+    if args.weighted[0] == 'unweighted':
+        print("Scott's Pi:", pi)
+    else:
+        print("Weighted Scott's Pi:", pi)
 
 def check_input(data):
     """
