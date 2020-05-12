@@ -48,7 +48,7 @@ Percentage Agreement: 0.9247594050743658
 ```
 ```console
 $ python3 percentage_agreement.py ./data/data2.csv ./data/weights2.txt
-Percentage Agreement: Percentage Agreement: 0.72
+Percentage Agreement: 0.72
 ```
 ### 6. calculate Scott's Pi
 ```console
