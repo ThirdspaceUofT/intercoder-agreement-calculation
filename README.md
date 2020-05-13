@@ -98,3 +98,13 @@ Weighted Scott's Pi: 0.7495375634891724
 $ python3 scott_pi.py weighted ./data/data2.csv ./data/weights2.txt
 Weighted Scott's Pi: 0.2894020984844277
 ```
+
+### 7. calculate Fleiss' kappa
+```console
+$ python3 fleiss_kappa.py ./data/data1.csv ./data/weights1.txt
+Fless Kappa: 0.6892123061574801
+```
+```console
+$ python3 fleiss_kappa.py ./data/data2.csv ./data/weights2.txt
+Fless Kappa: 0.21741884529188435
+```
