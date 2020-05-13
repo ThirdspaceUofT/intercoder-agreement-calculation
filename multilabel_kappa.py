@@ -76,11 +76,11 @@ def check_input(data):
 
 if __name__ == '__main__':
     if '-h' in sys.argv:
-        print("usage: python3 multilabel.py <data-file>")
+        print("usage: python3 multilabel_kappa.py <data-file>")
         exit(0)
         
     if len(sys.argv) != 2:
-        print("usage: python3 multilabel.py <data-file>")
+        print("usage: python3 multilabel_kappa.py <data-file>")
         sys.exit(1)
     data = sys.argv[1]
     check_input(data)
