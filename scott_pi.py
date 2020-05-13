@@ -61,8 +61,7 @@ def main():
                         a = coder1[k]
                     if k in coder2:
                         b = coder2[k]
-                    agreement_by_chance += (a + b) * (a + b) \
-                        / (4 * total * total)
+                    agreement_by_chance += (a + b) ** 2
             else:
                 for k in coder1:
                     for t in coder2:
@@ -74,11 +73,14 @@ def main():
                         if t in coder1:
                             b = coder1[t]
                         agreement_by_chance += weight * (coder1[k] + a) * \
-                        (coder2[t] + b) / (4 * total * total)    
+                        (coder2[t] + b)
+            
+            agreement_by_chance /= (2 * total) ** 2
             pi += (observed_agreement - agreement_by_chance) \
                 / (1 - agreement_by_chance)
+            
     pi = pi / (num_coders * (num_coders - 1) / 2)
-    
+
     if args.weighted[0] == 'unweighted':
         print("Scott's Pi:", pi)
     else:

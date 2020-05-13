@@ -40,11 +40,11 @@ def main():
     for i in categories:
         count = df.apply(lambda x: dict(x.value_counts())[i] \
                 if i in list(x) else 0, axis=1)
-        squared_count = df.apply(lambda x: (dict(x.value_counts())[i] * 
-                    dict(x.value_counts())[i]) if i in list(x) else 0, axis=1)
-        agreement_by_chance += count.sum() * count.sum() / (total * num_coders) ** 2
+        squared_count = df.apply(lambda x: (dict(x.value_counts())[i] ** 2) \
+                        if i in list(x) else 0, axis=1)
+        agreement_by_chance += count.sum() ** 2 \
+                            / (total * num_coders) ** 2
         observed_agreement += squared_count.sum()
-        
     observed_agreement -= total * num_coders
     observed_agreement /= total * num_coders * (num_coders - 1)
     kappa = (observed_agreement - agreement_by_chance) \
