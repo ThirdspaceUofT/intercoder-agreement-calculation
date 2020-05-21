@@ -22,10 +22,10 @@ def get_weighted_kappa(data, weights_file):
     
     total = len(df) 
     if total == 0:
-        return 0  
+        exit(0)
     num_coders = len(df.columns) - 1
     
-    num_weights = len(df1)
+    max_diff = df1.w.max() - df1.w.min()
     weights = dict(zip(df1.c, df1.w))
     
     sum_kappa = 0    
@@ -33,7 +33,7 @@ def get_weighted_kappa(data, weights_file):
         for j in range(i + 1, num_coders + 1):
             # calculate weighted ovserved_agreement
             df['Weight'] = df.apply(lambda x: 1 - abs(weights[x[i]] - 
-                            weights[x[j]]) / (num_weights - 1), axis=1)
+                            weights[x[j]]) / max_diff, axis=1)
             observed_agreement = df['Weight'].sum() / total
             
             # calculate weighted agreement_by_chance
@@ -43,7 +43,7 @@ def get_weighted_kappa(data, weights_file):
             for k in coder1:
                 for t in coder2:
                     weight = 1 - (abs(weights[k] - weights[t]) \
-                        / (num_weights - 1)) 
+                        / max_diff) 
                     agreement_by_chance += (weight * (coder1[k] * coder2[t]) 
                     / (total * total))
             sum_kappa += (observed_agreement - agreement_by_chance) \

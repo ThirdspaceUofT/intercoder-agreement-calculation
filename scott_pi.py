@@ -5,7 +5,7 @@ import argparse
 # Assumptions about the input data file: 
 # 1. The data file contains headers (e.g., C1, C2)
 # 2. There is an index column.
-# 3. There are at least 2 coders and each coder occupies one column.
+# 3. There are exactly 2 coders and each coder occupies one column.
 
 # Assumptions about the input weights file:
 # 1. There are exactly two columns with the first one being the categories and
@@ -32,54 +32,54 @@ def main():
     
     total = len(df) 
     if total == 0:
-        return 0  
+        exit(0)
     num_coders = len(df.columns) - 1
-    categories = list(df1.c)
-    num_weights = len(df1)
+    if num_coders > 2:
+        print("The number of raters should be exactly 2.")
+        exit(1)
+ 
+    max_diff = df1.w.max() - df1.w.min()
     weights = dict(zip(df1.c, df1.w))
     
     pi = 0
-    for i in range(1, num_coders):
-        for j in range(i + 1, num_coders + 1):
-            # calculate weighted ovserved_agreement
-            if args.weighted[0] == 'unweighted':
-                weighted = df.apply(lambda x: 1 if x[i] == x[j] else 0, 
-                        axis=1)
-            else:
-                weighted = df.apply(lambda x: 1 - abs(weights[x[i]] - 
-                            weights[x[j]]) / (num_weights - 1), axis=1)
-            observed_agreement = weighted.sum() / total
+
+    # calculate weighted ovserved_agreement
+    if args.weighted[0] == 'unweighted':
+        weighted = df.apply(lambda x: 1 if x[1] == x[2] else 0, 
+                axis=1)
+    else:
+        weighted = df.apply(lambda x: 1 - abs(weights[x[1]] - 
+                    weights[x[2]]) / max_diff, axis=1)
+    observed_agreement = weighted.sum() / total
             
-            # calculate weighted agreement_by_chance
-            agreement_by_chance = 0
-            coder1 = dict(df.iloc[:, i].value_counts()) 
-            coder2 = dict(df.iloc[:, j].value_counts())
-            if args.weighted[0] == 'unweighted':    
-                for k in categories:
-                    a, b = 0, 0
-                    if k in coder1:
-                        a = coder1[k]
-                    if k in coder2:
-                        b = coder2[k]
-                    agreement_by_chance += (a + b) ** 2
-            else:
-                for k in coder1:
-                    for t in coder2:
-                        weight = 1 - abs(weights[k] - weights[t]) \
-                            / (num_weights - 1)
-                        a, b = 0, 0
-                        if k in coder2:
-                            a = coder2[k]
-                        if t in coder1:
-                            b = coder1[t]
-                        agreement_by_chance += weight * (coder1[k] + a) * \
-                        (coder2[t] + b)
+    # calculate weighted agreement_by_chance
+    agreement_by_chance = 0
+    coder1 = dict(df.iloc[:, 1].value_counts()) 
+    coder2 = dict(df.iloc[:, 2].value_counts())
+    if args.weighted[0] == 'unweighted':    
+        for k in weights:
+            a, b = 0, 0
+            if k in coder1:
+                a = coder1[k]
+            if k in coder2:
+                b = coder2[k]
+            agreement_by_chance += (a + b) ** 2
+    else:
+        for k in coder1:
+            for t in coder2:
+                weight = 1 - abs(weights[k] - weights[t]) \
+                    / max_diff
+                a, b = 0, 0
+                if k in coder2:
+                    a = coder2[k]
+                if t in coder1:
+                    b = coder1[t]
+                agreement_by_chance += weight * (coder1[k] + a) * \
+                (coder2[t] + b)
             
-            agreement_by_chance /= (2 * total) ** 2
-            pi += (observed_agreement - agreement_by_chance) \
-                / (1 - agreement_by_chance)
-            
-    pi = pi / (num_coders * (num_coders - 1) / 2)
+    agreement_by_chance /= (2 * total) ** 2
+    pi += (observed_agreement - agreement_by_chance) \
+        / (1 - agreement_by_chance)
 
     if args.weighted[0] == 'unweighted':
         print("Scott's Pi:", pi)

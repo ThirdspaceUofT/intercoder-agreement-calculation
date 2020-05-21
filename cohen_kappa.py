@@ -32,7 +32,7 @@ if __name__ == '__main__':
     total = len(df) 
     if total == 0:
         print("Cohen\'s Kappa: 0")
-        sys.exit(0)
+        exit(0)
     num_coders = len(df.columns) - 1 
 
     sum_kappa = 0    

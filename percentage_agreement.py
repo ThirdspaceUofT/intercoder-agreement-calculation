@@ -30,12 +30,12 @@ def main():
     df = pd.read_csv(data)
     total = len(df) 
     if total == 0:
-        return 0  
+         exit(0) 
     num_coders = len(df.columns) - 1
             
     df1 = pd.read_csv(weights_file, sep=",\s", header=None, names=["c", "w"], 
         engine="python")
-    num_weights = len(df1)
+    max_diff = df1.w.max() - df1.w.min()
     weights = dict(zip(df1.c, df1.w))
     agreement = 0    
     for i in range(1, num_coders):
@@ -46,7 +46,7 @@ def main():
                         axis=1)
             else:
                 weighted = df.apply(lambda x: 1 - abs(weights[x[i]] - 
-                            weights[x[j]]) / (num_weights - 1), axis=1)
+                            weights[x[j]]) / max_diff, axis=1)
             agreement += weighted.sum() / total
             
     result = agreement / (num_coders * (num_coders - 1) / 2)

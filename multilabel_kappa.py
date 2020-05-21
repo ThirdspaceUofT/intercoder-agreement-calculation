@@ -30,7 +30,7 @@ def get_weighted_kappa(data):
     df = pd.read_csv(data)
     total = len(df)
     if total == 0:
-        return 0  
+        exit(0)
     
     size = 1 # define the number of columns occupied by each coder
     while size < len(df.columns):
