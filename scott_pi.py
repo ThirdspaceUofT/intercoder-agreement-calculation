@@ -16,13 +16,14 @@ def main():
     
     parser = argparse.ArgumentParser(description='This program calculates '\
         'Scott\'s Pi of the given data.')
-    parser.add_argument('weighted', choices=['weighted', 'unweighted'], 
-    nargs=1, help='indicate whether the result is weighted')
+    parser.add_argument('level_of_measurement', choices=['nominal', 'ordinal'], 
+    nargs=1, help='set level of measurement')
     parser.add_argument('data', nargs=1, help='set the data file')
     parser.add_argument('weights', nargs=1, help='set the weights file')
     args = parser.parse_args()
     data = args.data[0]
     weights_file = args.weights[0]
+    metric = args.level_of_measurement[0]
     check_input(data)
     check_input(weights_file)
 
@@ -44,7 +45,7 @@ def main():
     pi = 0
 
     # calculate weighted ovserved_agreement
-    if args.weighted[0] == 'unweighted':
+    if metric == 'nominal':
         weighted = df.apply(lambda x: 1 if x[1] == x[2] else 0, 
                 axis=1)
     else:
@@ -56,7 +57,7 @@ def main():
     agreement_by_chance = 0
     coder1 = dict(df.iloc[:, 1].value_counts()) 
     coder2 = dict(df.iloc[:, 2].value_counts())
-    if args.weighted[0] == 'unweighted':    
+    if metric == 'nominal':    
         for k in weights:
             a, b = 0, 0
             if k in coder1:
@@ -81,10 +82,7 @@ def main():
     pi += (observed_agreement - agreement_by_chance) \
         / (1 - agreement_by_chance)
 
-    if args.weighted[0] == 'unweighted':
-        print("Scott's Pi:", pi)
-    else:
-        print("Weighted Scott's Pi:", pi)
+    print("Scott's Pi for {} metric:".format(metric), pi)
 
 def check_input(data):
     """
