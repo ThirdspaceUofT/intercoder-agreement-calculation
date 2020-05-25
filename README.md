@@ -101,23 +101,23 @@ Scott's Pi for ordinal metric: 0.28940209848442794
 ### 7. calculate Fleiss' kappa
 usage:
 ```console
-python3 fleiss_kappa.py [-h] {nominal,ordinal} data weights
+python3 fleiss_kappa.py [-h] [-w WEIGHTS] data categories
 ```
 ```console
-$ python3 fleiss_kappa.py nominal ./data/data1.csv ./data/weights1.txt 
+$ python3 fleiss_kappa.py ./data/data1.csv ./data/categories1.txt
 Fleiss' Kappa for nominal metric: 0.6720623237921253
 ```
 ```console
-$ python3 fleiss_kappa.py nominal ./data/data2.csv ./data/weights2.txt 
+$ python3 fleiss_kappa.py ./data/data2.csv ./data/categories2.txt
 Fleiss' Kappa for nominal metric: 0.21741884529188435
 ```
 
 ```console
-$ python3 fleiss_kappa.py ordinal ./data/data1.csv ./data/weights1.txt 
+$ python3 fleiss_kappa.py -w ./data/weights1.txt ./data/data1.csv ./data/categories1.txt
 Fleiss' Kappa for ordinal metric: 0.7484205260779706
 ```
 ```console
-$python3 fleiss_kappa.py ordinal ./data/data2.csv ./data/weights2.txt 
+$ python3 fleiss_kappa.py -w ./data/weights2.txt ./data/data2.csv ./data/categories2.txt
 Fleiss' Kappa for ordinal metric: 0.28940209848442794
 ```
 
