@@ -16,20 +16,26 @@ def main():
     
     parser = argparse.ArgumentParser(description='This program calculates '\
         'Scott\'s Pi of the given data.')
-    parser.add_argument('level_of_measurement', choices=['nominal', 'ordinal'], 
-    nargs=1, help='set level of measurement')
     parser.add_argument('data', nargs=1, help='set the data file')
-    parser.add_argument('weights', nargs=1, help='set the weights file')
+    parser.add_argument('-w', '--weights', nargs=1, help='set the weights file,'
+    ' required for ordinal data only')
     args = parser.parse_args()
     data = args.data[0]
-    weights_file = args.weights[0]
-    metric = args.level_of_measurement[0]
+    if args.weights == None:
+        metric = 'nominal'
+    else:
+        metric = 'ordinal'
+        weights_file = args.weights[0]
+        check_input(weights_file)
+        df1 = pd.read_csv(weights_file, sep=",\s", header=None, names=["c", "w"], 
+        engine="python")
+        max_diff = df1.w.max() - df1.w.min()
+        weights = dict(zip(df1.c, df1.w))
     check_input(data)
-    check_input(weights_file)
+    
 
     df = pd.read_csv(data)
-    df1 = pd.read_csv(weights_file, sep=",\s", header=None, names=["c", "w"], 
-        engine="python")
+    
     
     total = len(df) 
     if total == 0:
@@ -38,9 +44,6 @@ def main():
     if num_coders > 2:
         print("The number of raters should be exactly 2.")
         exit(1)
- 
-    max_diff = df1.w.max() - df1.w.min()
-    weights = dict(zip(df1.c, df1.w))
     
     pi = 0
 
@@ -58,13 +61,9 @@ def main():
     coder1 = dict(df.iloc[:, 1].value_counts()) 
     coder2 = dict(df.iloc[:, 2].value_counts())
     if metric == 'nominal':    
-        for k in weights:
-            a, b = 0, 0
-            if k in coder1:
-                a = coder1[k]
+        for k in coder1:
             if k in coder2:
-                b = coder2[k]
-            agreement_by_chance += (a + b) ** 2
+                agreement_by_chance += (coder1[k] + coder2[k]) ** 2
     else:
         for k in coder1:
             for t in coder2:
