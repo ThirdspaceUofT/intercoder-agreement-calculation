@@ -5,14 +5,14 @@ import argparse
 import sys
 
 # Assumptions about the input data file: 
-# 1. The data file contains headers (e.g., C1, C2)
-# 2. There is an index column.
-# 3. There are at least 2 coders and each coder occupies one column.
-
+#   1. The data file contains headers (e.g., C1, C2)
+#   2. There is an index column.
+#   3. There are at least 2 coders and each coder occupies one column.
+#
 # Assumptions about the input weights file:
-# 1. There are exactly two columns with the first one being the categories and
-# the second one being the weights. 
-# 2. There are no headers in this file.
+#   1. There are exactly two columns with the first one being the categories and
+#      the second one being the weights. 
+#   2. There are no headers in this file.
 
 def main():
     

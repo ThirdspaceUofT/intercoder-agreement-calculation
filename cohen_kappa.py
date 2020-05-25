@@ -2,9 +2,9 @@ import pandas as pd
 import sys
 
 # Assumptions about the input data file: 
-# 1. The data file contains headers (e.g., C1, C2)
-# 2. There is an index column.
-# 3. There are at least 2 coders and each coder occupies one column.
+#   1. The data file contains headers (e.g., C1, C2)
+#   2. There is an index column.
+#   3. There are at least 2 coders and each coder occupies one column.
 
 def check_input(data):
     """
