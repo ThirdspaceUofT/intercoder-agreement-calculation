@@ -78,24 +78,23 @@ $ python3 percentage_agreement.py weighted ./data/data2.csv ./data/weights2.txt
 Weighted Percentage Agreement: 0.72
 ```
 ### 6. calculate Scott's Pi
-usage:
 ```console
-python3 scott_pi.py [-h] {nominal, ordinal} data weights
+python3 scott_pi.py [-h] [-w WEIGHTS] data
 ```
 ```console
-$ python3 scott_pi.py nominal ./data/data1.csv ./data/weights1.txt    
-Scott's Pi for nominal metric: 0.6720623237921253
+$ python3 scott_pi.py ./data/data1.csv  
+Scott's Pi for nominal metric: 0.6720637639154207
 ```
 ```console
-$ python3 scott_pi.py nominal ./data/data2.csv ./data/weights2.txt 
+$ python3 scott_pi.py ./data/data2.csv
 Scott's Pi for nominal metric: 0.21741884529188435
 ```
 ```console
-$ python3 scott_pi.py ordinal ./data/data1.csv ./data/weights1.txt 
-Scott's Pi for ordinal metric: 0.7495375634891718
+$ python3 scott_pi.py -w ./data/weights1.txt ./data/data1.csv
+ScoScott's Pi for ordinal metric: 0.7495375634891718
 ```
 ```console
-$ python3 scott_pi.py ordinal ./data/data2.csv ./data/weights2.txt 
+$ python3 scott_pi.py -w ./data/weights2.txt ./data/data2.csv 
 Scott's Pi for ordinal metric: 0.28940209848442794
 ```
 
