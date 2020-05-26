@@ -1,5 +1,11 @@
 # intercoder-agreement-calculation
 
+## Table of Contents
+* Examples
+
+  1. [calculate cohen's kappa] (#1)
+
+
 <a name="ex"></a>
 ## Examples
 
