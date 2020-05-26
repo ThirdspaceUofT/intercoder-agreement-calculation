@@ -3,14 +3,20 @@
 ## Table of Contents
 * Examples
 
-  1. [calculate cohen's kappa](#1)
+  1. [Cohen's Kappa](#1)
+  2. [weighted Kappa](#2)
+  3. [multi-label Kappa](#3)
+  4. [Krippendorff's Alpha](#4)
+  5. [percentage agreement](#5)
+  6. [Scott's Pi](#5)
+  7. [Fleiss' Kappa](#6)
 
 
 <a name="ex"></a>
 ## Examples
 
 <a name="1"></a>
-### 1. calculate cohen's kappa
+### 1. calculate Cohen's Kappa
 usage:
 ```console
 python3 cohen_kappa.py [-h] <data-file>
@@ -22,7 +28,7 @@ Cohen's Kappa: 0.6899266046058918
 
 
 <a name="2"></a>
-### 2. calculate weighted kappa
+### 2. calculate weighted Kappa
 usage:
 ```console
 python3 weighted_kappa.py [-h] <data-file> <weights-file>
@@ -38,7 +44,7 @@ Weighted Kappa: 0.2902183212395829
 ```
 
 <a name="3"></a>
-### 3. calculate kappa with multiple labels
+### 3. calculate Kappa with multiple labels
 usage:
 ```console
 python3 multilabel_kappa.py [-h] <data-file>
@@ -47,8 +53,8 @@ python3 multilabel_kappa.py [-h] <data-file>
 $ python3 multilabel_kappa.py ./data/data3.csv
 Weighted Kappa: 0.7234810951760119
 ```
-
-### 4. calculate Krippendorff's alpha
+<a name="4"></a>
+### 4. calculate Krippendorff's Alpha
 usage:
 ```console
 python3 krippendorff_alpha.py [-h] [-w WEIGHTS] {nominal,ordinal} data
@@ -61,7 +67,7 @@ Krippendorff's alpha for nominal metric: 0.6722775059943613
 $ python3 krippendorff_alpha.py ordinal ./data/data2.csv -w ./data/weights2.txt
 Krippendorff's alpha for ordinal metric: 0.3136278980049674
 ```
-
+<a name="5"></a>
 ### 5. calculate percentage agreement
 usage:
 ```console
@@ -83,6 +89,8 @@ Weighted Percentage Agreement: 0.9247594050743658
 $ python3 percentage_agreement.py weighted ./data/data2.csv ./data/weights2.txt
 Weighted Percentage Agreement: 0.72
 ```
+
+<a name="6"></a>
 ### 6. calculate Scott's Pi
 ```console
 python3 scott_pi.py [-h] [-w WEIGHTS] data
@@ -104,7 +112,8 @@ $ python3 scott_pi.py -w ./data/weights2.txt ./data/data2.csv
 Scott's Pi for ordinal metric: 0.28940209848442794
 ```
 
-### 7. calculate Fleiss' kappa
+<a name="7"></a>
+### 7. calculate Fleiss' Kappa
 usage:
 ```console
 python3 fleiss_kappa.py [-h] [-w WEIGHTS] data categories
