@@ -8,8 +8,8 @@
   3. [multi-label Kappa](#3)
   4. [Krippendorff's Alpha](#4)
   5. [percentage agreement](#5)
-  6. [Scott's Pi](#5)
-  7. [Fleiss' Kappa](#6)
+  6. [Scott's Pi](#6)
+  7. [Fleiss' Kappa](#7)
 
 
 <a name="ex"></a>
