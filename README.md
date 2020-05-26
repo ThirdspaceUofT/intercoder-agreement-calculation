@@ -1,8 +1,8 @@
 # intercoder-agreement-calculation
 
 ## Table of Contents
-* Examples
-
+### Examples
+  
   1. [Cohen's Kappa](#1)
   2. [weighted Kappa](#2)
   3. [multi-label Kappa](#3)
