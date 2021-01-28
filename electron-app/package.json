@@ -10,6 +10,6 @@
   "author": "Yanna Ding",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^9.0.4"
+    "electron": "^9.4.0"
   }
 }
